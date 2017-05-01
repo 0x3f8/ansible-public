@@ -23,12 +23,15 @@ Not applicable.
 Example Playbook
 ----------------
 
+```
 - name: Run the hardening role
   hosts: your_hosts
   become: true
   become_user: root
   roles:
     - { role: hardenlinux }
+
+```
 
 License
 -------
