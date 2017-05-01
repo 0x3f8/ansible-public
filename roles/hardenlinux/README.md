@@ -23,16 +23,12 @@ Not applicable.
 Example Playbook
 ----------------
 
-role = hardening
-   tasks/
-       main.yml
-       centos.yml
-       ubuntu.yml
-
-The contents of main.yml are then
-
-tasks:
-   - include: {{ ansible_os_family }}.yml
+- name: Run the hardening role
+  hosts: your_hosts
+  become: true
+  become_user: root
+  roles:
+    - { role: hardenlinux }
 
 License
 -------
