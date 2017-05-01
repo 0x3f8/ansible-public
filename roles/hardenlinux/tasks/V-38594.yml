@@ -1,0 +1,13 @@
+# The rsh service uses unencrypted network communications, which means that data
+# from the login session, including passwords and all other information transmitted 
+# during the session, can be stolen by eavesdroppers on the network.
+
+- stat: path=/etc/init.d/rshd
+  register: rshd
+
+- service: enabled=no state=stopped name=rshd
+  when: not logonly and rshd.stat.exists
+
+# Ubuntu tends to use the /etc/inetd.conf file instead of a service.  The previous lines are kept for service compatibility
+- lineinfile: dest=/etc/inetd.conf state=absent regexp='.*in\.rshd$' backup=yes
+  when: not logonly

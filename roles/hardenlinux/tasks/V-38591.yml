@@ -1,0 +1,8 @@
+# The "rsh-server" package provides several obsolete and insecure network services.
+# Removing it decreases the risk of those services' accidental (or intentional) activation.
+
+- apt: name={{ item }} state=absent
+  with_items:
+    - rsh-server
+    - rsh-redone-server
+  when: not logonly

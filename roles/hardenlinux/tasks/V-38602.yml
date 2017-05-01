@@ -1,0 +1,13 @@
+# The rlogin service uses unencrypted network communications, which means that data 
+# from the login session, including passwords and all other information transmitted
+# during the session, can be stolen by eavesdroppers on the network.
+
+- stat: path=/etc/init.d/rlogind
+  register: rlogind
+
+- service: enabled=no state=stopped name=rlogind
+  when: not logonly and rlogind.stat.exists
+
+# Ubuntu tends to use the /etc/inetd.conf file instead of a service.  The previous lines are kept for service compatibility
+- lineinfile: dest=/etc/inetd.conf state=absent regexp='.*in\.rlogind$' backup=yes
+  when: not logonly

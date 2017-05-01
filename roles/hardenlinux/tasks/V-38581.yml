@@ -1,0 +1,21 @@
+# The "root" group is a highly-privileged group. Furthermore, the group-owner of
+# this file should not have any access privileges anyway.
+#
+# In Ubuntu the bootloader files can be found in /boot.
+#
+
+- shell: 'find /boot \! -user root'
+  register: boot_files_user
+  changed_when: false
+  failed_when: "boot_files_user.stderr"
+
+- shell: 'find /boot \! -group root'
+  register: boot_files_group
+  changed_when: false
+  failed_when: "boot_files_group.stderr"
+
+- file: path="{{ item }}" owner=root group=root
+  with_items: 
+    - "{{ boot_files_user.stdout_lines }}"
+    - "{{ boot_files_group.stdout_lines }}"
+  when: not logonly and (boot_files_user.stdout_lines or boot_files_group.stdout_lines)

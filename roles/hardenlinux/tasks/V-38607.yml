@@ -1,0 +1,4 @@
+# SSH protocol version 1 suffers from design flaws that result
+# in security vulnerabilities and should not be used.
+- lineinfile: dest="{{ sshd_config }}" regexp="^#?Protocol" line="Protocol 2" state=present
+  when: not logonly

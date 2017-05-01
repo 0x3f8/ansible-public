@@ -1,0 +1,6 @@
+# Preventing reuse of previous passwords helps ensure that a compromised
+# password is not reused by a user.
+# 
+# The default Ubuntu 14.04 LTS Password settings are
+# password        [success=1 default=ignore]      pam_unix.so obscure sha512
+# Add "remember=24" to this string 

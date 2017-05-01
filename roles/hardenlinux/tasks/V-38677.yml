@@ -1,0 +1,7 @@
+# If an account has an empty password, anyone could log in and run commands with the privileges
+# of that account. Accounts with empty passwords should never be used in operational environments.
+
+- stat: path="/etc/exports"
+  register: nfsexports
+- replace: dest="/etc/exports" regexp='(,insecure_locks)|(insecure_locks[,]?)' replace='' backup=yes
+  when: not logonly and nfsexports.stat.exists

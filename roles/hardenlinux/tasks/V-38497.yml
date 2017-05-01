@@ -1,0 +1,4 @@
+# If an account has an empty password, anyone could log in and run commands with the privileges
+# of that account. Accounts with empty passwords should never be used in operational environments.
+- replace: dest="/etc/pam.d/common-auth" regexp='nullok_secure' replace='' backup=yes
+  when: not logonly

@@ -1,0 +1,5 @@
+
+- name: "Validate Ubuntu Repo GPG Key"
+  # The Ubuntu GPG key is necessary to cryptographically verify packages are from Ubuntu. 
+  apt_key: keyserver="keyserver.ubuntu.com" id="790BC7277767219C42C86F933B4FE6ACC0B21F32"
+  when: not logonly

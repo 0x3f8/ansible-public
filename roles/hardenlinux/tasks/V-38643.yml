@@ -1,0 +1,13 @@
+# Data in world-writable files can be modified by any user on the system. 
+# In almost all circumstances, files can be configured using a combination
+# of user and group permissions to support whatever legitimate access is
+# needed without the risk caused by world-writable files.
+
+- shell: 'find / -type f -perm -002 2>/dev/null | egrep -v "(/proc|/sys|/dev)"'
+  register: world_write
+  changed_when: false
+  failed_when: "world_write.stderr"
+
+- file: path="{{ item }}" mode="o-w"
+  with_items: "world_write.stdout_lines"
+  when: not logonly and world_write.stdout_lines

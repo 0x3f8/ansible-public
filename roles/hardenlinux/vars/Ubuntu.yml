@@ -1,0 +1,4 @@
+---
+# vars file for harden
+snmpd_conf: /etc/snmp/snmpd.conf
+sshd_config: /etc/ssh/sshd_config

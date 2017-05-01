@@ -1,0 +1,214 @@
+---
+# These tasks are a derivative of the publicly available DISA RedHat 6 STIGs.
+# Non-applicable and/or RedHat specific findings are not included in this task
+#
+# These tasks attempt to detect AND REMEDIATE any findings that are detected.
+#
+# - name: Stig Finding: Stig Title
+
+# Load OS specific variables
+- name: Include OS specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+
+# Begin individual tests
+- name: "V-38653 The snmpd service must not use a default password."
+  tags:
+    - snmpd
+    - severity_high
+  include: V-38653.yml
+
+- name: "V-38497 The system must not have accounts configured with blank or null passwords."
+  tags:
+    - system
+    - severity_high
+  include: V-38497.yml
+
+- name: "V-38677 The NFS server must not have the insecure file locking option enabled."
+  tags:
+    - nfs
+    - severity_high
+  include: V-38677.yml
+
+- name: "V-38476 Vendor-provided cryptographic certificates must be installed to verify the integrity of system software."
+  tags:
+    - system
+    - severity_high
+  include: V-38476.yml
+
+- name: "V-38491 There must be no .rhosts or hosts.equiv files on the system."
+  tags:
+    - system
+    - rhosts
+    - severity_high 
+  include: V-38491.yml
+
+- name: "V-38607 The SSH daemon must be configured to use only the SSHv2 protocol."
+  tags:
+    - sshd
+    - severity_high 
+  include: V-38607.yml
+
+- name: "V-38602 The rlogind service must not be running."
+  tags:
+    - rlogind
+    - severity_high 
+  include: V-38602.yml
+
+- name: "V-38594 The rsh service must not be running."
+  tags:
+    - rshd
+    - severity_high 
+  include: V-38594.yml
+
+- name: "V-38591 The rsh-server package must not be installed."
+  tags:
+    - rshserver
+    - severity_high 
+  include: V-38591.yml
+
+- name: "V-38598 The rexec service must not be running."
+  tags:
+    - rexecd
+    - severity_high 
+  include: V-38598.yml
+
+- name: "V-38587 The telnet-server package must not be installed."
+  tags:
+    - telnetserver
+    - severity_high 
+  include: V-38587.yml
+
+- name: "V-38589 The telnet service must not be running."
+  tags:
+    - telnetd
+    - severity_high 
+  include: V-38589.yml
+
+- name: "V-38701 The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system."
+  tags:
+    - tftpd
+    - severity_high 
+  include: V-38701.yml
+
+- name: "V-38614 The SSH daemon must not allow authentication using an empty password."
+  tags:
+    - sshd
+    - severity_high 
+  include: V-38614.yml
+
+- name: "V-38668 The x86 Ctrl-Alt-Delete key sequence must be disabled."
+  tags:
+    - ctlaltdel
+    - severity_high 
+  include: V-38668.yml
+
+# Begin medium severity findings
+
+- name: "V-38612 The SSH daemon must not allow host-based authentication."
+  tags:
+    - sshd
+    - severity_medium 
+  include: V-38612.yml
+
+- name: "V-38459 The /etc/group file must be group-owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38459.yml
+
+- name: "V-38461 The /etc/group file must have mode 0644 or less permissive."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38461.yml
+
+- name: "V-38465 Library files must have mode 0755 or less permissive."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38465.yml
+
+- name: "V-38643 There must be no world-writable files on the system."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38643.yml
+
+- name: "V-38499 The /etc/passwd file must not contain password hashes."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38499.yml
+
+- name: "V-38450 The /etc/passwd file must be owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38450.yml
+
+- name: "V-38581 The system boot loader configuration file(s) must be group-owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38581.yml
+
+- name: "V-38451 The /etc/passwd file must be group-owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38451.yml
+
+- name: "V-38457 The /etc/passwd file must have mode 0644 or less permissive."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38457.yml  
+
+- name: "V-38458 The /etc/group file must be owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38458.yml
+
+- name: "V-38443 The /etc/gshadow file must be owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38443.yml
+
+- name: "V-38448 The /etc/gshadow file must be group-owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38448.yml
+
+- name: "V-38449 The /etc/gshadow file must be group-owned by root."
+  tags:
+    - system
+    - severity_medium 
+  include: V-38449.yml
+
+
+- name: "V-38526 The system must not accept ICMPv4 secure redirect packets on any interface."
+  tags:
+    - network
+    - severity_medium 
+  include: V-38526.yml
+
+- name: "V-38524 The system must not accept ICMPv4 redirect packets on any interface."
+  tags:
+    - network
+    - severity_medium 
+  include: V-38524.yml
+
+- name: "V-38484 The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh."
+  tags:
+    - sshd
+    - severity_medium 
+  include: V-38484.yml
+
+- name: "V-38529 The system must not accept IPv4 source-routed packets by default."
+  tags:
+    - network
+    - severity_medium 
+  include: V-38529.yml

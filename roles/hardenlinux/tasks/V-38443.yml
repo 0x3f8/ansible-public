@@ -1,0 +1,4 @@
+# The "/etc/gshadow" file contains group password hashes.
+# Protection of this file is critical for system security.
+
+- file: path=/etc/gshadow owner=root

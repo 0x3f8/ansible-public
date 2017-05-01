@@ -1,0 +1,12 @@
+# Files from shared library directories are loaded into the address space of
+# processes (including privileged ones) or of the kernel itself at runtime.
+# Restrictive permissions are necessary to protect the integrity of the system.
+
+- shell: 'find / -type f \( -perm -g=w -o -perm -o=w \) 2>/dev/null  | egrep "(^/lib|^/usr/lib|^/lib64)"'
+  register: lib_write
+  changed_when: false
+  failed_when: "lib_write.stderr"
+
+- file: path="{{ item }}" mode="og-w"
+  with_items: "lib_write.stdout_lines"
+  when: not logonly and lib_write.stdout_lines

@@ -1,0 +1,10 @@
+---
+  # Presence of the default SNMP password enables querying of different
+  # system aspects and could result in unauthorized knowledge of the system.
+- name: "V-38653 - Check for the existence of the snmp.conf file"
+  stat: path="snmpd_conf_{{ ansible_distribution }}"
+  register: snmpd_st
+
+- name: "V-38653 - Replace any instances where the community string is 'public'"
+  replace: dest="snmpd_conf_{{ ansible_distribution }}" regexp='(^com2sec.*)public$' replace='\1{{ snmp_community }}' backup=yes
+  when: not logonly and snmpd_st.stat.exists

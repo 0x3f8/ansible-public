@@ -1,0 +1,4 @@
+---
+snmp_community: SomeSillyString
+logonly: false
+

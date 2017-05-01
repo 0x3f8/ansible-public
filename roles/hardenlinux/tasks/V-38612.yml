@@ -1,0 +1,4 @@
+# SSH trust relationships mean a compromise on one host can
+# allow an attacker to move trivially to other hosts.
+
+- replace: dest=/etc/ssh/sshd_config regexp='^[#].*(PrintLastLog).*' replace='\1 yes'

@@ -1,0 +1,11 @@
+  # Trust files are convenient, but when used in conjunction with the R-services,
+  # they can allow unauthenticated access to a system.
+- shell: awk -F':' '{ if ( $3 >= 500 ) print $6"/.rhosts" }' /etc/passwd
+  register: homedir_rhosts
+  changed_when: false
+
+- file: path="{{ item }}" state=absent
+  with_items:
+    - /etc/hosts.equiv
+    - "{{ homedir_rhosts.stdout_lines }}"
+  when: not logonly

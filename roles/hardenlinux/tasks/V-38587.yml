@@ -1,0 +1,12 @@
+# Removing the ""telnet-server"" package decreases the risk of the
+# unencrypted telnet service's accidental (or intentional) activation.
+# Mitigation:  If the telnet-server package is configured to only
+# allow encrypted sessions, such as with Kerberos or the use of
+# encrypted network tunnels, the risk of exposing sensitive information is mitigated.
+
+- apt: name={{ item }} state=absent
+  with_items:
+    - telnetd
+    - inetutils-telnetd
+    - telnetd-ssl
+  when: not logonly

@@ -1,0 +1,5 @@
+# Accepting ICMP redirects has few legitimate uses.
+# It should be disabled unless it is absolutely required.
+
+- replace: dest=/etc/sysctl.conf regexp='^[#].*(net.ipv4.conf.all.accept_redirects).*' replace='\1=0'
+  when: not logonly

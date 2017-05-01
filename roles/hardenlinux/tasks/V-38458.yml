@@ -1,0 +1,5 @@
+# The "/etc/group" file contains information regarding groups that are
+# configured on the system. Protection of this file is important for system security.
+
+- file: path=/etc/group owner=root
+  when: not logonly

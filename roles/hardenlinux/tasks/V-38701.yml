@@ -1,0 +1,8 @@
+# Using the "-s" option causes the TFTP service to only serve files from the given directory.
+# Serving files from an intentionally specified directory reduces the risk of sharing
+# files which should remain private.
+- stat: path="/etc/inetd.conf"
+  register: inetd_st
+
+- replace: dest="/etc/inetd.conf" regexp='^(tftp.*/usr/sbin/in\.tftpd)[\s]+(/.*$)' replace='\1 -s \2' backup=yes
+  when: not logonly and inetd_st.stat.exists

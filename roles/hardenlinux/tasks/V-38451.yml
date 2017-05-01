@@ -1,0 +1,5 @@
+# The "/etc/passwd" file contains information about the users that
+# are configured on the system. Protection of this file is critical
+# for system security.
+
+- file: path=/etc/passwd group=root

@@ -1,0 +1,6 @@
+# If the "/etc/passwd" file is writable by a group-owner or the world the risk of
+# its compromise is increased. The file contains the list of accounts on the system
+# and associated information, and protection of this file is critical for system security.
+
+- file: path=/etc/passwd mode=0644
+  when: not logonly
