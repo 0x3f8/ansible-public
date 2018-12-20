@@ -5,6 +5,8 @@ This role is designed to test the security posture of Linux OS Servers and harde
 
 You are **STRONGLY** encouraged to run this against a test server first.  There are a couple of changes to ipv4/v6 settings that have been known to cause issues.  If you're really concerned you can check the description for each task and adjust for your needs.
 
+See [DISA STIG Guidelines](https://iase.disa.mil/stigs/Pages/index.aspx) for more information
+
 Requirements
 ------------
 
