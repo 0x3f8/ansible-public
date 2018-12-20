@@ -7,6 +7,8 @@ You are **STRONGLY** encouraged to run this against a test server first.  There 
 
 See [DISA STIG Guidelines](https://iase.disa.mil/stigs/Pages/index.aspx) for more information
 
+If you'd like to contribute, note that the tasks are organized by vulnerability ID.  You can find those IDs on the DISA site above.
+
 Requirements
 ------------
 
